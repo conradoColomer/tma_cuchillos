@@ -1,172 +1,167 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cuchillería Artesanal - Cuchillos Forjados a Mano</title>
-    <link rel="stylesheet" href="css/estilo.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cuchillería artesanal · Acero, fuego y cuero</title>
+  <meta name="description" content="Cuchillos forjados a mano, uno por uno. Hoja templada, mango de madera y vaina de cuero cosida a mano.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Cpath d='M14 46 L42 14 L50 20 L26 48 L16 52 Z' fill='%23f4f4f4'/%3E%3Cpath d='M42 14 L50 20 L46 25 L38 19 Z' fill='%23d4a35a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css?v=20261114b">
 </head>
 <body>
-    <header>
-        <h1>Cuchillería Artesanal</h1>
-        <p>Cuchillos forjados a mano con materiales de primera calidad</p>
-    </header>
-    
-    <nav>
-        <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#catalogo">Catálogo</a></li>
-            <li><a href="#como-se-hacen">Cómo se hacen</a></li>
-            <li><a href="#contacto">Contacto</a></li>
-        </ul>
+  <div class="grano" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="marca" href="#inicio">Cuchillería<span>artesanal</span></a>
+    <nav class="nav__links" aria-label="Secciones">
+      <a href="#piezas">Piezas</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
     </nav>
-    
-    <main>
-        <!-- Sección de inicio con carrusel -->
-        <section id="inicio">
-            <h2>Cuchillo Artesanal - Vista Completa</h2>
-            <p>Este cuchillo fue forjado a mano utilizando técnicas tradicionales de herrería. Cada pieza es única y está hecha con materiales de primera calidad.</p>
-            
-            <!-- Carrusel de imágenes -->
-            <div class="carousel" id="carousel">
-                <div class="carousel-images">
-                    <img src="img/IMG_2580.jpg" alt="Vista frontal del cuchillo artesanal">
-                    <img src="img/IMG_2581.jpg" alt="Detalle del mango y la vaina">
-                    <img src="img/IMG_2582.jpg" alt="Vista lateral del cuchillo">
-                    <img src="img/IMG_2583.jpg" alt="Detalle del acero y la forja">
-                    <img src="img/IMG_2584.jpg" alt="Vista completa del cuchillo con vaina">
-                </div>
-                <button class="carousel-btn prev" onclick="moverCarrusel(-1)">&#10094;</button>
-                <button class="carousel-btn next" onclick="moverCarrusel(1)">&#10095;</button>
-            </div>
-            
-            <div class="carousel-dots" id="carousel-dots"></div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="#catalogo" class="btn">Ver Catálogo Completo</a>
-            </div>
-        </section>
-        
-        <!-- Sección de catálogo -->
-        <section id="catalogo">
-            <h2>Catálogo de Cuchillos</h2>
-            <div class="catalogo-grid" id="catalogo-grid">
-                <!-- Los productos se cargarán desde catálogo.json -->
-            </div>
-        </section>
-        
-        <!-- Sección de cómo se hacen -->
-        <section id="como-se-hacen">
-            <h2>Cómo se hacen nuestros cuchillos</h2>
-            
-            <h3>Forja</h3>
-            <p>El proceso comienza con la selección del acero de alta calidad. Se calienta a temperaturas extremas en la forja y se golpea con martillos hasta darle la forma deseada. Cada golpe es preciso y requiere años de experiencia.</p>
-            
-            <h3>Temple</h3>
-            <p>Una vez forjado, el cuchillo se calienta nuevamente y se sumerge en aceite o agua para endurecer el acero. Este proceso es crucial para garantizar que el cuchillo mantenga el filo durante mucho tiempo.</p>
-            
-            <h3>Mango y Vaina</h3>
-            <p>El mango se tallado en madera de primera calidad, seleccionada por su durabilidad y estética. La vaina se confecciona a mano con cuero curtido, cosido con hilo resistente para garantizar su durabilidad.</p>
-            
-            <h3>Acabado</h3>
-            <p>Finalmente, se pule y afila el cuchillo, se añaden los detalles decorativos y se inspecciona cada pieza para asegurar la máxima calidad.</p>
-        </section>
-        
-        <!-- Sección de contacto -->
-        <section id="contacto">
-            <h2>Contacto</h2>
-            <p>¿Te interesa alguno de nuestros cuchillos? ¿Querés hacer un pedido personalizado? Escribinos y te responderemos a la brevedad.</p>
-            
-            <div class="formulario">
-                <form action="mailto:tuemail@ejemplo.com" method="post" enctype="text/plain">
-                    <div class="form-group">
-                        <label for="nombre">Nombre:</label>
-                        <input type="text" id="nombre" name="nombre" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="mensaje">Mensaje:</label>
-                        <textarea id="mensaje" name="mensaje" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Enviar Mensaje</button>
-                </form>
-            </div>
-        </section>
-    </main>
-    
-    <footer>
-        <p>&copy; 2026 Cuchillería Artesanal. Todos los derechos reservados.</p>
-        <p>Hecho con ❤️ en Argentina</p>
-    </footer>
-    
-    <script>
-        // Carrusel
-        let indiceActual = 0;
-        const imagenes = document.querySelectorAll('.carousel-images img');
-        const totalImagenes = imagenes.length;
-        const dotsContainer = document.getElementById('carousel-dots');
-        
-        // Crear puntos indicadores
-        for (let i = 0; i < totalImagenes; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => irAImagen(i));
-            dotsContainer.appendChild(dot);
-        }
-        
-        function moverCarrusel(direccion) {
-            indiceActual += direccion;
-            if (indiceActual < 0) indiceActual = totalImagenes - 1;
-            if (indiceActual >= totalImagenes) indiceActual = 0;
-            actualizarCarrusel();
-        }
-        
-        function irAImagen(indice) {
-            indiceActual = indice;
-            actualizarCarrusel();
-        }
-        
-        function actualizarCarrusel() {
-            const carrusel = document.querySelector('.carousel-images');
-            carrusel.style.transform = `translateX(-${indiceActual * 100}%)`;
-            
-            // Actualizar puntos
-            document.querySelectorAll('.carousel-dots .dot').forEach((dot, i) => {
-                dot.classList.toggle('active', i === indiceActual);
-            });
-        }
-        
-        // Auto-play del carrusel
-        setInterval(() => {
-            moverCarrusel(1);
-        }, 5000);
-        
-        // Cargar catálogo desde JSON
-        fetch('catalogo.json')
-            .then(response => response.json())
-            .then(productos => {
-                const catalogoGrid = document.getElementById('catalogo-grid');
-                productos.forEach(producto => {
-                    const card = document.createElement('div');
-                    card.classList.add('producto-card');
-                    card.innerHTML = `
-                        <img src="img/${producto.foto}" alt="${producto.nombre}">
-                        <div class="producto-info">
-                            <h3>${producto.nombre}</h3>
-                            <p><strong>Acero:</strong> ${producto.acero}</p>
-                            <p><strong>Mango:</strong> ${producto.mango}</p>
-                            <p><strong>Vaina:</strong> ${producto.vaina}</p>
-                            <p class="precio">${producto.precio}</p>
-                        </div>
-                    `;
-                    catalogoGrid.appendChild(card);
-                });
-            })
-            .catch(error => console.error('Error cargando catálogo:', error));
-    </script>
+    <a class="boton boton--chico" href="#contacto">Pedir una pieza</a>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero__fondo" aria-hidden="true">
+        <img src="img/IMG_2582.jpg" alt="" fetchpriority="high">
+      </div>
+      <div class="hero__texto">
+        <p class="eyebrow reveal">Forjado a mano · Argentina</p>
+        <h1 class="reveal">Acero, fuego<br>y cuero.</h1>
+        <p class="bajada reveal">Cuchillos forjados uno por uno. Hoja templada en el taller, mango de madera y vaina de cuero cosida a mano.</p>
+        <div class="acciones reveal">
+          <a class="boton" href="#piezas">Ver las piezas</a>
+          <a class="link" href="#proceso">Cómo se hacen <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="galeria" aria-label="Fotos del taller">
+      <div class="bento">
+        <figure class="bento__item bento__item--grande reveal"><img src="img/IMG_2582.jpg" alt="Cuchillo forjado junto a su vaina de cuero rojo" loading="lazy"></figure>
+        <figure class="bento__item reveal"><img src="img/IMG_2580.jpg" alt="Cuchillo envainado, en la mano" loading="lazy"></figure>
+        <figure class="bento__item reveal"><img src="img/IMG_2584.jpg" alt="Detalle de la hoja y el bolster de bronce" loading="lazy"></figure>
+        <figure class="bento__item reveal"><img src="img/IMG_2581.jpg" alt="Costura a mano de la vaina de cuero" loading="lazy"></figure>
+        <figure class="bento__item reveal"><img src="img/IMG_2583.jpg" alt="Mango de madera visto desde arriba" loading="lazy"></figure>
+      </div>
+    </section>
+
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta__pista">
+        <span>Forjado a mano</span><span>✦</span><span>Acero templado</span><span>✦</span><span>Mangos de madera</span><span>✦</span><span>Vainas de cuero</span><span>✦</span><span>Piezas únicas</span><span>✦</span>
+        <span>Forjado a mano</span><span>✦</span><span>Acero templado</span><span>✦</span><span>Mangos de madera</span><span>✦</span><span>Vainas de cuero</span><span>✦</span><span>Piezas únicas</span><span>✦</span>
+      </div>
+    </div>
+
+    <section id="piezas" class="seccion">
+      <div class="seccion__cabecera reveal">
+        <h2>Piezas</h2>
+        <p>Cada cuchillo sale distinto de la fragua: el acero, la madera del mango y el cuero de la vaina lo hacen único.</p>
+      </div>
+      <div class="grilla" id="catalogo"></div>
+      <p class="vacio" id="catalogo-vacio" hidden>Pronto, las primeras piezas.</p>
+    </section>
+
+    <section id="proceso" class="seccion">
+      <div class="seccion__cabecera reveal">
+        <h2>Del fuego a la mano</h2>
+        <p>Cinco pasos, todos en el taller.</p>
+      </div>
+      <div class="carrusel reveal">
+        <div class="carrusel__pista" id="pasos" tabindex="0">
+          <article class="paso"><span class="paso__n">01</span><h3>Forja</h3><p>El acero se calienta en la fragua y se martilla hasta darle la forma de la hoja. Cada golpe define la pieza.</p></article>
+          <article class="paso"><span class="paso__n">02</span><h3>Templado</h3><p>Un tratamiento térmico que endurece la hoja para que corte bien y aguante el uso de todos los días.</p></article>
+          <article class="paso"><span class="paso__n">03</span><h3>Mango</h3><p>Madera trabajada en el taller, ajustada a mano a la espiga y rematada con un bolster de bronce.</p></article>
+          <article class="paso"><span class="paso__n">04</span><h3>Vaina</h3><p>Cuero cortado y cosido a mano, a la medida exacta de cada hoja.</p></article>
+          <article class="paso"><span class="paso__n">05</span><h3>Afilado y acabado</h3><p>Se afila, se pule y se revisa cada detalle antes de que la pieza salga del taller.</p></article>
+        </div>
+        <div class="carrusel__controles">
+          <div class="puntos" id="puntos" aria-hidden="true"></div>
+          <div class="flechas">
+            <button class="flecha" type="button" data-dir="-1" aria-label="Paso anterior">←</button>
+            <button class="flecha" type="button" data-dir="1" aria-label="Paso siguiente">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="seccion cta">
+      <div class="cta__caja reveal">
+        <p class="eyebrow">Contacto</p>
+        <h2>¿Querés uno?</h2>
+        <p>Piezas únicas y a pedido. El canal de contacto se abre pronto.</p>
+        <span class="boton boton--pronto" aria-disabled="true">Próximamente</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <a class="marca" href="#inicio">Cuchillería<span>artesanal</span></a>
+    <p>Hecho a mano en Argentina · <span id="anio"></span></p>
+  </footer>
+
+  <script>
+    // Catálogo: catalogo.json = [{"nombre","acero","mango","vaina","precio","foto","descripcion"}]; foto es un archivo de img/.
+    const esconder = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const grilla = document.getElementById("catalogo");
+    fetch("catalogo.json", {cache: "no-store"})
+      .then(r => r.ok ? r.json() : [])
+      .then(items => {
+        if (!Array.isArray(items) || !items.length) { document.getElementById("catalogo-vacio").hidden = false; return; }
+        items.forEach((it, i) => {
+          const card = document.createElement("article");
+          card.className = "pieza reveal";
+          const src = it.foto ? (/^(https?:)?\//.test(it.foto) ? it.foto : "img/" + it.foto) : "";
+          const foto = src ? `<div class="pieza__foto"><img src="${esconder(src)}" alt="${esconder(it.nombre || "Cuchillo")}" loading="lazy"></div>` : "";
+          const specs = [["Acero", it.acero], ["Mango", it.mango], ["Vaina", it.vaina]]
+            .filter(([, v]) => v && !/definir/i.test(v)).map(([k, v]) => `<li><span>${k}</span>${esconder(v)}</li>`).join("");
+          const precio = it.precio && !/definir/i.test(it.precio) ? esconder(it.precio) : "Precio a consultar";
+          card.innerHTML = `${foto}<div class="pieza__texto"><span class="pieza__n">${String(i + 1).padStart(2, "0")}</span>` +
+            `<h3>${esconder(it.nombre || "Cuchillo")}</h3>` + (it.descripcion ? `<p>${esconder(it.descripcion)}</p>` : "") +
+            (specs ? `<ul class="specs">${specs}</ul>` : "") + `<p class="precio">${precio}</p></div>`;
+          grilla.appendChild(card);
+          observar(card);
+        });
+      })
+      .catch(() => { document.getElementById("catalogo-vacio").hidden = false; });
+
+    // Aparición suave al hacer scroll
+    const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const io = reducir ? null : new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+    }, {threshold: 0.12, rootMargin: "0px 0px -8% 0px"});
+    function observar(el) { if (io) io.observe(el); else el.classList.add("visible"); }
+    document.querySelectorAll(".reveal").forEach(observar);
+
+    // Carrusel del proceso
+    const pista = document.getElementById("pasos");
+    const pasos = [...pista.children];
+    const puntos = document.getElementById("puntos");
+    pasos.forEach((_, i) => {
+      const b = document.createElement("button");
+      b.type = "button"; b.className = "punto" + (i ? "" : " activo");
+      b.addEventListener("click", () => pasos[i].scrollIntoView({behavior: reducir ? "auto" : "smooth", inline: "start", block: "nearest"}));
+      puntos.appendChild(b);
+    });
+    const marcar = () => {
+      const x = pista.scrollLeft + pista.clientWidth * 0.3;
+      let i = pasos.findIndex(p => p.offsetLeft + p.offsetWidth > x); if (i < 0) i = pasos.length - 1;
+      [...puntos.children].forEach((p, j) => p.classList.toggle("activo", j === i));
+    };
+    pista.addEventListener("scroll", marcar, {passive: true});
+    document.querySelectorAll(".flecha").forEach(f => f.addEventListener("click", () => {
+      pista.scrollBy({left: Number(f.dataset.dir) * (pasos[0].offsetWidth + 16), behavior: reducir ? "auto" : "smooth"});
+    }));
+
+    // Navegación: fondo al scrollear
+    const nav = document.querySelector(".nav");
+    addEventListener("scroll", () => nav.classList.toggle("nav--solida", scrollY > 40), {passive: true});
+    document.getElementById("anio").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
