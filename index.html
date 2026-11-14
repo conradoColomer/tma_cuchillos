@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cuchillería artesanal</title>
+  <meta name="description" content="Cuchillos forjados a mano, uno por uno. Sitio en construcción.">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <header class="portada">
+    <p class="aviso">Sitio en construcción</p>
+    <h1>Cuchillería artesanal</h1>
+    <p class="bajada">Cuchillos forjados a mano, uno por uno. Acero templado, vainas de cuero y mangos hechos en el taller.</p>
+    <a class="boton" href="#catalogo">Ver el catálogo</a>
+  </header>
+
+  <main>
+    <section id="catalogo">
+      <h2>Catálogo</h2>
+      <p class="nota" id="catalogo-vacio">Pronto, los primeros cuchillos.</p>
+      <div class="grilla" id="catalogo-grilla"></div>
+    </section>
+
+    <section id="proceso">
+      <h2>Cómo se hacen</h2>
+      <div class="pasos">
+        <article><h3>Forja</h3><p>El acero se calienta en la fragua y se martilla hasta darle la forma de la hoja.</p></article>
+        <article><h3>Templado</h3><p>Un tratamiento térmico que endurece la hoja para que corte y aguante el uso.</p></article>
+        <article><h3>Vainas</h3><p>Cuero vachetta cortado y cosido a mano, a medida de cada cuchillo.</p></article>
+        <article><h3>Mangos</h3><p>Madera trabajada en el taller para que cada pieza sea única.</p></article>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p class="nota">Próximamente.</p>
+    </section>
+  </main>
+
+  <footer><p>Cuchillería artesanal · hecho a mano</p></footer>
+
+  <script>
+    // El catálogo vive en catalogo.json: [{"nombre","acero","mango","vaina","precio","foto","descripcion"}]
+    fetch("catalogo.json", {cache: "no-store"})
+      .then(r => r.ok ? r.json() : [])
+      .then(items => {
+        if (!Array.isArray(items) || !items.length) return;
+        document.getElementById("catalogo-vacio").hidden = true;
+        const grilla = document.getElementById("catalogo-grilla");
+        for (const it of items) {
+          const card = document.createElement("article");
+          card.className = "tarjeta";
+          const foto = it.foto ? `<img src="${it.foto}" alt="${it.nombre || "Cuchillo"}" loading="lazy">` : "";
+          const datos = [["Acero", it.acero], ["Mango", it.mango], ["Vaina", it.vaina]]
+            .filter(([, v]) => v).map(([k, v]) => `<li><span>${k}</span> ${v}</li>`).join("");
+          card.innerHTML = `${foto}<h3>${it.nombre || "Cuchillo"}</h3><p>${it.descripcion || ""}</p><ul>${datos}</ul>` +
+            `<p class="precio">${it.precio || "Precio a definir"}</p>`;
+          grilla.appendChild(card);
+        }
+      })
+      .catch(() => {});
+  </script>
+</body>
+</html>

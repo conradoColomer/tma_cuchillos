@@ -1,0 +1,25 @@
+:root { --fondo: #15110e; --panel: #221b16; --texto: #f2e9df; --suave: #b8a996; --acento: #c8742e; --borde: #3a2e25; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: var(--fondo); color: var(--texto); line-height: 1.55; }
+a { color: var(--acento); }
+h1, h2, h3 { line-height: 1.15; margin: 0 0 .5em; }
+h1 { font-size: clamp(2rem, 6vw, 3.5rem); letter-spacing: .02em; }
+h2 { font-size: clamp(1.4rem, 3.5vw, 2rem); border-bottom: 1px solid var(--borde); padding-bottom: .3em; }
+.portada { padding: 18vh 1.25rem 12vh; text-align: center; max-width: 52rem; margin: 0 auto; }
+.aviso { display: inline-block; font-size: .8rem; letter-spacing: .12em; text-transform: uppercase; color: var(--suave); border: 1px solid var(--borde); padding: .25rem .75rem; border-radius: 999px; }
+.bajada { color: var(--suave); font-size: 1.15rem; max-width: 36rem; margin: 0 auto 1.5rem; }
+.boton { display: inline-block; background: var(--acento); color: #fff; text-decoration: none; padding: .7rem 1.4rem; border-radius: 6px; font-weight: 600; }
+main { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem 3rem; }
+section { padding: 2.5rem 0; }
+.nota { color: var(--suave); }
+.grilla { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+.tarjeta { background: var(--panel); border: 1px solid var(--borde); border-radius: 10px; padding: 1rem; }
+.tarjeta img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; margin-bottom: .75rem; }
+.tarjeta ul { list-style: none; padding: 0; margin: .5rem 0; color: var(--suave); font-size: .95rem; }
+.tarjeta li span { color: var(--texto); font-weight: 600; }
+.precio { font-weight: 700; color: var(--acento); }
+.pasos { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); }
+.pasos article { background: var(--panel); border: 1px solid var(--borde); border-radius: 10px; padding: 1rem; }
+.pasos p { margin: 0; color: var(--suave); }
+footer { border-top: 1px solid var(--borde); color: var(--suave); text-align: center; padding: 1.5rem; font-size: .9rem; }
