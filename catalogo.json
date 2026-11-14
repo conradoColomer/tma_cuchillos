@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "nombre": "Cuchillo artesanal",
+    "acero": "a definir",
+    "mango": "madera",
+    "vaina": "cuero",
+    "precio": "a definir",
+    "foto": "IMG_2580.jpg"
+  }
+]

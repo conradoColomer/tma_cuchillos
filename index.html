@@ -1,65 +1,172 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cuchillería artesanal</title>
-  <meta name="description" content="Cuchillos forjados a mano, uno por uno. Sitio en construcción.">
-  <link rel="stylesheet" href="css/estilo.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuchillería Artesanal - Cuchillos Forjados a Mano</title>
+    <link rel="stylesheet" href="css/estilo.css">
 </head>
 <body>
-  <header class="portada">
-    <p class="aviso">Sitio en construcción</p>
-    <h1>Cuchillería artesanal</h1>
-    <p class="bajada">Cuchillos forjados a mano, uno por uno. Acero templado, vainas de cuero y mangos hechos en el taller.</p>
-    <a class="boton" href="#catalogo">Ver el catálogo</a>
-  </header>
-
-  <main>
-    <section id="catalogo">
-      <h2>Catálogo</h2>
-      <p class="nota" id="catalogo-vacio">Pronto, los primeros cuchillos.</p>
-      <div class="grilla" id="catalogo-grilla"></div>
-    </section>
-
-    <section id="proceso">
-      <h2>Cómo se hacen</h2>
-      <div class="pasos">
-        <article><h3>Forja</h3><p>El acero se calienta en la fragua y se martilla hasta darle la forma de la hoja.</p></article>
-        <article><h3>Templado</h3><p>Un tratamiento térmico que endurece la hoja para que corte y aguante el uso.</p></article>
-        <article><h3>Vainas</h3><p>Cuero vachetta cortado y cosido a mano, a medida de cada cuchillo.</p></article>
-        <article><h3>Mangos</h3><p>Madera trabajada en el taller para que cada pieza sea única.</p></article>
-      </div>
-    </section>
-
-    <section id="contacto">
-      <h2>Contacto</h2>
-      <p class="nota">Próximamente.</p>
-    </section>
-  </main>
-
-  <footer><p>Cuchillería artesanal · hecho a mano</p></footer>
-
-  <script>
-    // El catálogo vive en catalogo.json: [{"nombre","acero","mango","vaina","precio","foto","descripcion"}]
-    fetch("catalogo.json", {cache: "no-store"})
-      .then(r => r.ok ? r.json() : [])
-      .then(items => {
-        if (!Array.isArray(items) || !items.length) return;
-        document.getElementById("catalogo-vacio").hidden = true;
-        const grilla = document.getElementById("catalogo-grilla");
-        for (const it of items) {
-          const card = document.createElement("article");
-          card.className = "tarjeta";
-          const foto = it.foto ? `<img src="${it.foto}" alt="${it.nombre || "Cuchillo"}" loading="lazy">` : "";
-          const datos = [["Acero", it.acero], ["Mango", it.mango], ["Vaina", it.vaina]]
-            .filter(([, v]) => v).map(([k, v]) => `<li><span>${k}</span> ${v}</li>`).join("");
-          card.innerHTML = `${foto}<h3>${it.nombre || "Cuchillo"}</h3><p>${it.descripcion || ""}</p><ul>${datos}</ul>` +
-            `<p class="precio">${it.precio || "Precio a definir"}</p>`;
-          grilla.appendChild(card);
+    <header>
+        <h1>Cuchillería Artesanal</h1>
+        <p>Cuchillos forjados a mano con materiales de primera calidad</p>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#catalogo">Catálogo</a></li>
+            <li><a href="#como-se-hacen">Cómo se hacen</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+    
+    <main>
+        <!-- Sección de inicio con carrusel -->
+        <section id="inicio">
+            <h2>Cuchillo Artesanal - Vista Completa</h2>
+            <p>Este cuchillo fue forjado a mano utilizando técnicas tradicionales de herrería. Cada pieza es única y está hecha con materiales de primera calidad.</p>
+            
+            <!-- Carrusel de imágenes -->
+            <div class="carousel" id="carousel">
+                <div class="carousel-images">
+                    <img src="img/IMG_2580.jpg" alt="Vista frontal del cuchillo artesanal">
+                    <img src="img/IMG_2581.jpg" alt="Detalle del mango y la vaina">
+                    <img src="img/IMG_2582.jpg" alt="Vista lateral del cuchillo">
+                    <img src="img/IMG_2583.jpg" alt="Detalle del acero y la forja">
+                    <img src="img/IMG_2584.jpg" alt="Vista completa del cuchillo con vaina">
+                </div>
+                <button class="carousel-btn prev" onclick="moverCarrusel(-1)">&#10094;</button>
+                <button class="carousel-btn next" onclick="moverCarrusel(1)">&#10095;</button>
+            </div>
+            
+            <div class="carousel-dots" id="carousel-dots"></div>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="#catalogo" class="btn">Ver Catálogo Completo</a>
+            </div>
+        </section>
+        
+        <!-- Sección de catálogo -->
+        <section id="catalogo">
+            <h2>Catálogo de Cuchillos</h2>
+            <div class="catalogo-grid" id="catalogo-grid">
+                <!-- Los productos se cargarán desde catálogo.json -->
+            </div>
+        </section>
+        
+        <!-- Sección de cómo se hacen -->
+        <section id="como-se-hacen">
+            <h2>Cómo se hacen nuestros cuchillos</h2>
+            
+            <h3>Forja</h3>
+            <p>El proceso comienza con la selección del acero de alta calidad. Se calienta a temperaturas extremas en la forja y se golpea con martillos hasta darle la forma deseada. Cada golpe es preciso y requiere años de experiencia.</p>
+            
+            <h3>Temple</h3>
+            <p>Una vez forjado, el cuchillo se calienta nuevamente y se sumerge en aceite o agua para endurecer el acero. Este proceso es crucial para garantizar que el cuchillo mantenga el filo durante mucho tiempo.</p>
+            
+            <h3>Mango y Vaina</h3>
+            <p>El mango se tallado en madera de primera calidad, seleccionada por su durabilidad y estética. La vaina se confecciona a mano con cuero curtido, cosido con hilo resistente para garantizar su durabilidad.</p>
+            
+            <h3>Acabado</h3>
+            <p>Finalmente, se pule y afila el cuchillo, se añaden los detalles decorativos y se inspecciona cada pieza para asegurar la máxima calidad.</p>
+        </section>
+        
+        <!-- Sección de contacto -->
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <p>¿Te interesa alguno de nuestros cuchillos? ¿Querés hacer un pedido personalizado? Escribinos y te responderemos a la brevedad.</p>
+            
+            <div class="formulario">
+                <form action="mailto:tuemail@ejemplo.com" method="post" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje:</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2026 Cuchillería Artesanal. Todos los derechos reservados.</p>
+        <p>Hecho con ❤️ en Argentina</p>
+    </footer>
+    
+    <script>
+        // Carrusel
+        let indiceActual = 0;
+        const imagenes = document.querySelectorAll('.carousel-images img');
+        const totalImagenes = imagenes.length;
+        const dotsContainer = document.getElementById('carousel-dots');
+        
+        // Crear puntos indicadores
+        for (let i = 0; i < totalImagenes; i++) {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => irAImagen(i));
+            dotsContainer.appendChild(dot);
         }
-      })
-      .catch(() => {});
-  </script>
+        
+        function moverCarrusel(direccion) {
+            indiceActual += direccion;
+            if (indiceActual < 0) indiceActual = totalImagenes - 1;
+            if (indiceActual >= totalImagenes) indiceActual = 0;
+            actualizarCarrusel();
+        }
+        
+        function irAImagen(indice) {
+            indiceActual = indice;
+            actualizarCarrusel();
+        }
+        
+        function actualizarCarrusel() {
+            const carrusel = document.querySelector('.carousel-images');
+            carrusel.style.transform = `translateX(-${indiceActual * 100}%)`;
+            
+            // Actualizar puntos
+            document.querySelectorAll('.carousel-dots .dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === indiceActual);
+            });
+        }
+        
+        // Auto-play del carrusel
+        setInterval(() => {
+            moverCarrusel(1);
+        }, 5000);
+        
+        // Cargar catálogo desde JSON
+        fetch('catalogo.json')
+            .then(response => response.json())
+            .then(productos => {
+                const catalogoGrid = document.getElementById('catalogo-grid');
+                productos.forEach(producto => {
+                    const card = document.createElement('div');
+                    card.classList.add('producto-card');
+                    card.innerHTML = `
+                        <img src="img/${producto.foto}" alt="${producto.nombre}">
+                        <div class="producto-info">
+                            <h3>${producto.nombre}</h3>
+                            <p><strong>Acero:</strong> ${producto.acero}</p>
+                            <p><strong>Mango:</strong> ${producto.mango}</p>
+                            <p><strong>Vaina:</strong> ${producto.vaina}</p>
+                            <p class="precio">${producto.precio}</p>
+                        </div>
+                    `;
+                    catalogoGrid.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error cargando catálogo:', error));
+    </script>
 </body>
 </html>
