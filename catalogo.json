@@ -1,10 +1,10 @@
 [
   {
-    "nombre": "Cuchillo artesanal",
-    "acero": "a definir",
-    "mango": "madera",
-    "vaina": "cuero",
-    "precio": "a definir",
+    "nombre": "Cuchillo criollo argentino",
+    "acero": "Acero 5160 (SAE) — elástico de camión",
+    "mango": "Quebracho y paraíso con moneda argentina",
+    "vaina": "Cuero vaqueta de 3mm",
+    "precio": "$190.000",
     "foto": "cuchillo-01-blanco.jpg",
     "fotos": [
       "cuchillo-01-blanco.jpg",
