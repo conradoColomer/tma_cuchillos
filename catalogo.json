@@ -14,5 +14,21 @@
       "IMG_2583.jpg",
       "IMG_2584.jpg"
     ]
+  },
+  {
+    "nombre": "Cuchillo criollo argentino",
+    "acero": "A definir",
+    "mango": "A definir",
+    "vaina": "A definir",
+    "precio": "A definir",
+    "foto": "cuchillo2-1.jpg",
+    "fotos": [
+      "cuchillo2-1.jpg",
+      "cuchillo2-2.jpg",
+      "cuchillo2-3.jpg",
+      "cuchillo2-4.jpg",
+      "cuchillo2-5.jpg",
+      "cuchillo2-6.jpg"
+    ]
   }
 ]
