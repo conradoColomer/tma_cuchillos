@@ -97,8 +97,9 @@ p { margin: 0; }
 /* Catálogo */
 .grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
 .pieza { background: var(--fondo-2); border: 1px solid var(--borde); border-radius: var(--radio); overflow: hidden; display: flex; flex-direction: column; }
-.pieza__foto { aspect-ratio: 4 / 3; overflow: hidden; }
-.pieza__foto img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(.2,.7,.2,1); }
+/* Las fotos del catálogo van recortadas sobre blanco (foto_producto): caja blanca, la pieza entera adentro */
+.pieza__foto { aspect-ratio: 4 / 3; overflow: hidden; background: #fbfbfa; }
+.pieza__foto img { width: 100%; height: 100%; object-fit: contain; padding: 4%; box-sizing: border-box; transition: transform 0.7s cubic-bezier(.2,.7,.2,1); }
 .pieza:hover .pieza__foto img { transform: scale(1.05); }
 .pieza__texto { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
 .pieza__n { font-size: 0.75rem; letter-spacing: 0.14em; color: var(--acento); font-weight: 600; }

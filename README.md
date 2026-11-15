@@ -1,4 +1,4 @@
-# Sitio de la cuchillería artesanal
+# Sitio de TMA Cuchillos (cuchillería artesanal)
 
 Sitio estático (HTML + CSS + un poco de JS), sin frameworks ni build. Lo mantiene el agente `cm-cuchilleria`
 del bot de Discord «Cerebro» desde la carpeta `~/sitios/cuchilleria`, con aprobación de Conrad.
