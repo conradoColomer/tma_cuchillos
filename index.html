@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/estilo.css?v=20261114c">
+  <link rel="stylesheet" href="css/estilo.css?v=20261114d">
 </head>
 <body>
   <div class="grano" aria-hidden="true"></div>
@@ -43,11 +43,11 @@
 
     <section class="galeria" aria-label="Fotos del taller">
       <div class="bento">
-        <figure class="bento__item bento__item--grande reveal"><img src="img/IMG_2582.jpg" alt="Cuchillo forjado junto a su vaina de cuero rojo" loading="lazy"></figure>
-        <figure class="bento__item reveal"><img src="img/IMG_2580.jpg" alt="Cuchillo envainado, en la mano" loading="lazy"></figure>
-        <figure class="bento__item reveal"><img src="img/IMG_2584.jpg" alt="Detalle de la hoja y el bolster de bronce" loading="lazy"></figure>
-        <figure class="bento__item reveal"><img src="img/IMG_2581.jpg" alt="Costura a mano de la vaina de cuero" loading="lazy"></figure>
-        <figure class="bento__item reveal"><img src="img/IMG_2583.jpg" alt="Mango de madera visto desde arriba" loading="lazy"></figure>
+        <figure class="bento__item bento__item--grande reveal" tabindex="0" role="button" aria-label="Ver foto"><img src="img/IMG_2582.jpg" alt="Cuchillo forjado junto a su vaina de cuero rojo" loading="lazy"></figure>
+        <figure class="bento__item reveal" tabindex="0" role="button" aria-label="Ver foto"><img src="img/IMG_2580.jpg" alt="Cuchillo envainado, en la mano" loading="lazy"></figure>
+        <figure class="bento__item reveal" tabindex="0" role="button" aria-label="Ver foto"><img src="img/IMG_2584.jpg" alt="Detalle de la hoja y el bolster de bronce" loading="lazy"></figure>
+        <figure class="bento__item reveal" tabindex="0" role="button" aria-label="Ver foto"><img src="img/IMG_2581.jpg" alt="Costura a mano de la vaina de cuero" loading="lazy"></figure>
+        <figure class="bento__item reveal" tabindex="0" role="button" aria-label="Ver foto"><img src="img/IMG_2583.jpg" alt="Mango de madera visto desde arriba" loading="lazy"></figure>
       </div>
     </section>
 
@@ -100,38 +100,138 @@
     </section>
   </main>
 
+  <div class="visor" id="visor" hidden role="dialog" aria-modal="true" aria-label="Galería de fotos">
+    <button class="visor__cerrar" type="button" aria-label="Cerrar">✕</button>
+    <div class="visor__pista" id="visor-pista" tabindex="0"></div>
+    <button class="visor__flecha visor__flecha--prev" type="button" data-dir="-1" aria-label="Foto anterior">←</button>
+    <button class="visor__flecha visor__flecha--next" type="button" data-dir="1" aria-label="Foto siguiente">→</button>
+    <div class="visor__pie"><span id="visor-titulo"></span><span id="visor-contador"></span></div>
+  </div>
+
   <footer class="pie">
     <a class="marca" href="#inicio">TMA<span>Cuchillos</span></a>
     <p>TMA Cuchillos · Hecho a mano en Argentina · <span id="anio"></span></p>
   </footer>
 
   <script>
-    // Catálogo: catalogo.json = [{"nombre","acero","mango","vaina","precio","foto","descripcion"}]; foto es un archivo de img/.
+    // Catálogo: catalogo.json = [{"nombre","acero","mango","vaina","precio","foto","fotos","descripcion"}].
+    // "fotos" es la lista de archivos de img/ (la primera va en la tarjeta); "foto" sola también sirve.
     const esconder = (s) => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+    const rutaFoto = (f) => /^(https?:)?\//.test(f) ? f : "img/" + f;
     const grilla = document.getElementById("catalogo");
     fetch("catalogo.json", {cache: "no-store"})
       .then(r => r.ok ? r.json() : [])
       .then(items => {
         if (!Array.isArray(items) || !items.length) { document.getElementById("catalogo-vacio").hidden = false; return; }
         items.forEach((it, i) => {
+          const nombre = it.nombre || "Cuchillo";
+          const fotos = (Array.isArray(it.fotos) && it.fotos.length ? it.fotos : (it.foto ? [it.foto] : [])).map(rutaFoto);
           const card = document.createElement("article");
           card.className = "pieza reveal";
-          const src = it.foto ? (/^(https?:)?\//.test(it.foto) ? it.foto : "img/" + it.foto) : "";
-          const foto = src ? `<div class="pieza__foto"><img src="${esconder(src)}" alt="${esconder(it.nombre || "Cuchillo")}" loading="lazy"></div>` : "";
+          const foto = fotos.length ? `<div class="pieza__foto"><img src="${esconder(fotos[0])}" alt="${esconder(nombre)}" loading="lazy">` +
+            (fotos.length > 1 ? `<span class="pieza__cant">${fotos.length} fotos</span>` : "") + `</div>` : "";
           const specs = [["Acero", it.acero], ["Mango", it.mango], ["Vaina", it.vaina]]
             .filter(([, v]) => v && !/definir/i.test(v)).map(([k, v]) => `<li><span>${k}</span>${esconder(v)}</li>`).join("");
           const precio = it.precio && !/definir/i.test(it.precio) ? esconder(it.precio) : "Precio a consultar";
           card.innerHTML = `${foto}<div class="pieza__texto"><span class="pieza__n">${String(i + 1).padStart(2, "0")}</span>` +
-            `<h3>${esconder(it.nombre || "Cuchillo")}</h3>` + (it.descripcion ? `<p>${esconder(it.descripcion)}</p>` : "") +
+            `<h3>${esconder(nombre)}</h3>` + (it.descripcion ? `<p>${esconder(it.descripcion)}</p>` : "") +
             (specs ? `<ul class="specs">${specs}</ul>` : "") + `<p class="precio">${precio}</p></div>`;
+          if (fotos.length) {
+            card.tabIndex = 0; card.setAttribute("role", "button"); card.setAttribute("aria-label", `Ver fotos de ${nombre}`);
+            const abrir = () => abrirVisor(fotos.map(src => ({src, alt: nombre})), 0, nombre);
+            card.addEventListener("click", abrir);
+            card.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
+          }
           grilla.appendChild(card);
           observar(card);
         });
       })
       .catch(() => { document.getElementById("catalogo-vacio").hidden = false; });
 
-    // Aparición suave al hacer scroll
+    // Visor de fotos a pantalla completa: se desliza, con flechas, teclado y rueda del mouse
+    const visor = document.getElementById("visor");
+    const visorPista = document.getElementById("visor-pista");
+    const visorTitulo = document.getElementById("visor-titulo");
+    const visorContador = document.getElementById("visor-contador");
+    let visorFotos = [], visorAnterior = null;
     const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const indiceVisor = () => Math.round(visorPista.scrollLeft / Math.max(1, visorPista.clientWidth));
+    function contarVisor() { visorContador.textContent = visorFotos.length ? `${indiceVisor() + 1} / ${visorFotos.length}` : ""; }
+    function abrirVisor(fotos, indice, titulo) {
+      visorFotos = fotos; visorAnterior = document.activeElement;
+      visorPista.innerHTML = fotos.map(f => `<figure class="visor__item"><img src="${esconder(f.src)}" alt="${esconder(f.alt || "")}" loading="lazy" draggable="false"></figure>`).join("");
+      visorTitulo.textContent = titulo || "";
+      visor.hidden = false; document.body.classList.add("sin-scroll");
+      if (animVisor) { cancelAnimationFrame(animVisor.raf); animVisor = null; visorPista.style.scrollSnapType = ""; }
+      visorPista.scrollLeft = visorPista.clientWidth * indice; contarVisor();
+      visorPista.focus({preventScroll: true});
+    }
+    function cerrarVisor() {
+      visor.hidden = true; document.body.classList.remove("sin-scroll"); visorPista.innerHTML = "";
+      if (visorAnterior && visorAnterior.focus) visorAnterior.focus({preventScroll: true});
+    }
+    // Animación propia (no el scroll suave nativo): dos pasos seguidos se encadenan bien y se cancelan entre sí.
+    let animVisor = null;
+    function irVisor(d) {
+      const base = animVisor ? animVisor.objetivo : indiceVisor();
+      animarVisor(Math.max(0, Math.min(visorFotos.length - 1, base + d)));
+    }
+    function animarVisor(objetivo) {
+      if (animVisor) cancelAnimationFrame(animVisor.raf);
+      const desde = visorPista.scrollLeft, hasta = visorPista.clientWidth * objetivo;
+      const terminar = () => { visorPista.style.scrollSnapType = ""; visorPista.scrollLeft = hasta; animVisor = null; contarVisor(); };
+      if (reducir || Math.abs(hasta - desde) < 2) { terminar(); return; }
+      visorPista.style.scrollSnapType = "none";  // sin el imán del scroll mientras anima
+      const t0 = performance.now(), dur = 380;
+      const paso = (ahora) => {
+        const k = Math.min(1, (ahora - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+        visorPista.scrollLeft = desde + (hasta - desde) * e;
+        if (k < 1) animVisor.raf = requestAnimationFrame(paso); else terminar();
+      };
+      animVisor = {objetivo, raf: requestAnimationFrame(paso)};
+    }
+    // Deslizar con el mouse (en el celu el deslizamiento con el dedo ya es nativo)
+    let arrastreX = null;
+    visorPista.addEventListener("dragstart", e => e.preventDefault());  // sin arrastre nativo de la imagen
+    visorPista.addEventListener("pointerdown", e => { if (e.pointerType === "mouse") arrastreX = e.clientX; });
+    visorPista.addEventListener("pointercancel", () => { arrastreX = null; });
+    visorPista.addEventListener("pointerup", e => {
+      if (arrastreX === null) return;
+      const dx = e.clientX - arrastreX; arrastreX = null;
+      if (Math.abs(dx) > 40) { irVisor(dx < 0 ? 1 : -1); arrastreOmitirClick = true; }
+    });
+    let arrastreOmitirClick = false;
+    visorPista.addEventListener("scroll", contarVisor, {passive: true});
+    visor.querySelector(".visor__cerrar").addEventListener("click", cerrarVisor);
+    visor.querySelectorAll(".visor__flecha").forEach(b => b.addEventListener("click", () => irVisor(Number(b.dataset.dir))));
+    visorPista.addEventListener("click", e => {
+      if (arrastreOmitirClick) { arrastreOmitirClick = false; return; }  // fue un deslizamiento, no un clic
+      if (e.target.tagName !== "IMG") cerrarVisor();
+    });
+    let ruedaHasta = 0;
+    visor.addEventListener("wheel", e => {
+      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;  // el deslizamiento horizontal ya lo maneja el scroll
+      e.preventDefault();
+      const ahora = Date.now(); if (ahora < ruedaHasta) return; ruedaHasta = ahora + 450;
+      irVisor(e.deltaY > 0 ? 1 : -1);
+    }, {passive: false});
+    document.addEventListener("keydown", e => {
+      if (visor.hidden) return;
+      if (e.key === "Escape") cerrarVisor();
+      else if (e.key === "ArrowRight") irVisor(1);
+      else if (e.key === "ArrowLeft") irVisor(-1);
+    });
+    addEventListener("resize", () => { if (!visor.hidden) visorPista.scrollLeft = visorPista.clientWidth * indiceVisor(); });
+
+    // Grilla de fotos del taller: cada una abre el visor con todas
+    const bento = [...document.querySelectorAll(".bento__item img")].map(img => ({src: img.getAttribute("src"), alt: img.alt}));
+    document.querySelectorAll(".bento__item").forEach((fig, i) => {
+      const abrir = () => abrirVisor(bento, i, "Taller");
+      fig.addEventListener("click", abrir);
+      fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
+    });
+
+    // Aparición suave al hacer scroll
     const io = reducir ? null : new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
     }, {threshold: 0.12, rootMargin: "0px 0px -8% 0px"});

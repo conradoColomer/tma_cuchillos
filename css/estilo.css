@@ -97,6 +97,10 @@ p { margin: 0; }
 /* Catálogo */
 .grilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
 .pieza { background: var(--fondo-2); border: 1px solid var(--borde); border-radius: var(--radio); overflow: hidden; display: flex; flex-direction: column; }
+.pieza[role="button"], .bento__item[role="button"] { cursor: zoom-in; }
+.pieza[role="button"]:focus-visible, .bento__item[role="button"]:focus-visible { outline: 2px solid var(--acento); outline-offset: 3px; }
+.pieza__foto { position: relative; }
+.pieza__cant { position: absolute; right: 12px; bottom: 12px; background: rgba(10,10,10,0.78); color: var(--texto); border-radius: 999px; padding: 0.3rem 0.7rem; font-size: 0.75rem; letter-spacing: 0.04em; }
 /* Las fotos del catálogo van recortadas sobre blanco (foto_producto): caja blanca, la pieza entera adentro */
 .pieza__foto { aspect-ratio: 4 / 3; overflow: hidden; background: #fbfbfa; }
 .pieza__foto img { width: 100%; height: 100%; object-fit: contain; padding: 4%; box-sizing: border-box; transition: transform 0.7s cubic-bezier(.2,.7,.2,1); }
@@ -163,4 +167,26 @@ p { margin: 0; }
   .seccion__cabecera { grid-template-columns: 1fr; }
   .paso { padding: 1.5rem; min-height: 260px; }
   .pie { flex-direction: column; align-items: flex-start; }
+}
+
+/* Visor de fotos a pantalla completa */
+body.sin-scroll { overflow: hidden; }
+.visor { position: fixed; inset: 0; z-index: 100; background: rgba(6, 6, 6, 0.96); display: grid; grid-template-rows: 1fr auto; }
+.visor[hidden] { display: none; }
+.visor__pista { display: flex; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scrollbar-width: none; min-height: 0; outline: none; -webkit-overflow-scrolling: touch; }
+.visor__pista::-webkit-scrollbar { display: none; }
+.visor__item { flex: 0 0 100%; width: 100%; height: 100%; scroll-snap-align: start; scroll-snap-stop: always; margin: 0; padding: 64px 72px 12px; display: grid; place-items: center; }
+.visor__item img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; border-radius: 12px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); -webkit-user-drag: none; user-select: none; }
+.visor__cerrar, .visor__flecha { position: absolute; width: 46px; height: 46px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.25); background: rgba(10,10,10,0.6); color: var(--texto); font-size: 1.1rem; cursor: pointer; backdrop-filter: blur(8px); transition: background 0.2s, border-color 0.2s; }
+.visor__cerrar:hover, .visor__flecha:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.5); }
+.visor__cerrar { top: 14px; right: 16px; }
+.visor__flecha { top: 50%; transform: translateY(-50%); }
+.visor__flecha--prev { left: 16px; }
+.visor__flecha--next { right: 16px; }
+.visor__pie { display: flex; justify-content: space-between; gap: 1rem; padding: 10px 20px 18px; color: var(--texto-2); font-size: 0.9rem; }
+.visor__pie span:first-child { color: var(--texto); font-weight: 500; }
+@media (max-width: 760px) {
+  .visor__item { padding: 60px 8px 8px; }
+  .visor__flecha { display: none; }  /* en el celu se desliza con el dedo */
+  .visor__cerrar { top: 10px; right: 10px; }
 }

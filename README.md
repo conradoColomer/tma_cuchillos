@@ -7,8 +7,9 @@ del bot de Discord «Cerebro» desde la carpeta `~/sitios/cuchilleria`, con apro
   `catalogo.json`), «Del fuego a la mano» (carrusel de 5 pasos) y cierre de contacto (sin formulario por ahora).
 - `css/estilo.css`: estilo oscuro, tipografía grande (Inter Tight / Inter desde Google Fonts), tarjetas redondeadas.
   Si se cambia, actualizar el `?v=` del `<link>` en `index.html` para que no quede cacheado.
-- `catalogo.json`: lista de cuchillos `[{"nombre","acero","mango","vaina","precio","foto","descripcion"}]`;
-  `foto` es un archivo dentro de `img/`. Un precio «a definir» se muestra como «Precio a consultar».
+- `catalogo.json`: lista de cuchillos `[{"nombre","acero","mango","vaina","precio","fotos","descripcion"}]`;
+  `fotos` son archivos dentro de `img/` (la primera va en la tarjeta, todas se ven en el visor al tocar la pieza;
+  `foto` sola también sirve). Un precio «a definir» se muestra como «Precio a consultar».
 - `img/`: fotos (nombres cortos, sin espacios). Antes de subirlas, achicarlas:
   `sips -Z 1600 -s formatOptions 82 img/foto.jpg --out img/foto.jpg` (los originales quedan en
   `~/discord-bot/data/adjuntos/cuchilleria-web/`).

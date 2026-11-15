@@ -5,6 +5,14 @@
     "mango": "madera",
     "vaina": "cuero",
     "precio": "a definir",
-    "foto": "cuchillo-01-blanco.jpg"
+    "foto": "cuchillo-01-blanco.jpg",
+    "fotos": [
+      "cuchillo-01-blanco.jpg",
+      "IMG_2582.jpg",
+      "IMG_2580.jpg",
+      "IMG_2581.jpg",
+      "IMG_2583.jpg",
+      "IMG_2584.jpg"
+    ]
   }
 ]
