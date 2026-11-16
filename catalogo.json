@@ -17,18 +17,19 @@
   },
   {
     "nombre": "Cuchillo criollo argentino",
-    "acero": "A definir",
-    "mango": "A definir",
-    "vaina": "A definir",
-    "precio": "A definir",
+    "acero": "Acero 5160 — elástico de auto",
+    "mango": "Pino con agujeros",
+    "vaina": "Cuero vaqueta de 3mm",
+    "precio": "$145.000",
     "foto": "cuchillo2-1.jpg",
     "fotos": [
       "cuchillo2-1.jpg",
-      "cuchillo2-2.jpg",
-      "cuchillo2-3.jpg",
-      "cuchillo2-4.jpg",
-      "cuchillo2-5.jpg",
-      "cuchillo2-6.jpg"
+      "cuchillo2-orig-1.jpg",
+      "cuchillo2-orig-2.jpg",
+      "cuchillo2-orig-3.jpg",
+      "cuchillo2-orig-4.jpg",
+      "cuchillo2-orig-5.jpg",
+      "cuchillo2-orig-6.jpg"
     ]
   }
 ]
