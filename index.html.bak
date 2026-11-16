@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TMA Cuchillos · Acero, fuego y cuero</title>
+  <meta name="description" content="TMA Cuchillos: cuchillos forjados a mano, uno por uno. Hoja templada, mango de madera y vaina de cuero cosida a mano.">
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230a0a0a'/%3E%3Cpath d='M14 46 L42 14 L50 20 L26 48 L16 52 Z' fill='%23f4f4f4'/%3E%3Cpath d='M42 14 L50 20 L46 25 L38 19 Z' fill='%23d4a35a'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/estilo.css?v=20261116a">
+</head>
+<body>
+  <div class="grano" aria-hidden="true"></div>
+
+  <header class="nav">
+    <a class="marca" href="#inicio">TMA<span>Cuchillos</span></a>
+    <nav class="nav__links" aria-label="Secciones">
+      <a href="#piezas">Piezas</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a class="boton boton--chico" href="#contacto">Pedir una pieza</a>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero__fondo" aria-hidden="true">
+        <div class="hero__slideshow" id="heroSlideshow"></div>
+      </div>
+      <div class="hero__texto">
+        <p class="eyebrow reveal">Forjado a mano · Argentina</p>
+        <h1 class="reveal">Acero, fuego<br>y cuero.</h1>
+        <p class="bajada reveal">Cuchillos forjados uno por uno. Hoja templada en el taller, mango de madera y vaina de cuero cosida a mano.</p>
+        <div class="acciones reveal">
+          <a class="boton" href="#piezas">Ver las piezas</a>
+          <a class="link" href="#proceso">Cómo se hacen <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="galeria" aria-label="Fotos del taller">
+      <div class="bento" id="bentoGrid"></div>
+    </section>
+
+    <div class="cinta" aria-hidden="true">
+      <div class="cinta__pista">
+        <span>Forjado a mano</span><span>✦</span><span>Acero templado</span><span>✦</span><span>Mangos de madera</span><span>✦</span><span>Vainas de cuero</span><span>✦</span><span>Piezas únicas</span><span>✦</span>
+        <span>Forjado a mano</span><span>✦</span><span>Acero templado</span><span>✦</span><span>Mangos de madera</span><span>✦</span><span>Vainas de cuero</span><span>✦</span><span>Piezas únicas</span><span>✦</span>
+      </div>
+    </div>
+
+    <section id="piezas" class="seccion">
+      <div class="seccion__cabecera reveal">
+        <h2>Piezas</h2>
+        <p>Cada cuchillo sale distinto de la fragua: el acero, la madera del mango y el cuero de la vaina lo hacen único.</p>
+      </div>
+      <div class="grilla" id="catalogo"></div>
+      <p class="vacio" id="catalogo-vacio" hidden>Pronto, las primeras piezas.</p>
+    </section>
+
+    <section id="proceso" class="seccion">
+      <div class="seccion__cabecera reveal">
+        <h2>Del fuego a la mano</h2>
+        <p>Cinco pasos, todos en el taller.</p>
+      </div>
+      <div class="carrusel reveal">
+        <div class="carrusel__pista" id="pasos" tabindex="0">
+          <article class="paso"><span class="paso__n">01</span><h3>Forja</h3><p>El acero se calienta en la fragua y se martilla hasta darle la forma de la hoja. Cada golpe define la pieza.</p></article>
+          <article class="paso"><span class="paso__n">02</span><h3>Templado</h3><p>Un tratamiento térmico que endurece la hoja para que corte bien y aguante el uso de todos los días.</p></article>
+          <article class="paso"><span class="paso__n">03</span><h3>Mango</h3><p>Madera trabajada en el taller, ajustada a mano a la espiga y rematada con un bolster de bronce.</p></article>
+          <article class="paso"><span class="paso__n">04</span><h3>Vaina</h3><p>Cuero cortado y cosido a mano, a la medida exacta de cada hoja.</p></article>
+          <article class="paso"><span class="paso__n">05</span><h3>Acabado</h3><p>Pulido, ajuste final y control de calidad. La pieza queda lista para su vaina.</p></article>
+        </div>
+        <div class="carrusel__controles">
+          <button class="flecha flecha--prev" data-dir="-1" aria-label="Anterior">&#8249;</button>
+          <div class="carrusel__puntos" id="puntos"></div>
+          <button class="flecha flecha--next" data-dir="1" aria-label="Siguiente">&#8250;</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="seccion seccion--contacto">
+      <div class="seccion__cabecera reveal">
+        <h2>¿Querés uno?</h2>
+        <p>Escribime y armamos tu pieza a medida.</p>
+      </div>
+      <a class="boton boton--grande" href="https://wa.me/5491100000000?text=Hola%2C%20quiero%20consultar%20por%20un%20cuchillo%20TMA" target="_blank" rel="noopener">
+        Contactar por WhatsApp
+      </a>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>© <span id="anio"></span> TMA Cuchillos · Pilar, Buenos Aires</p>
+    <p class="pie__sub">Forjado a mano, uno por uno.</p>
+  </footer>
+
+  <!-- Visor de fotos -->
+  <div class="visor" id="visor" hidden>
+    <button class="visor__cerrar" aria-label="Cerrar">✕</button>
+    <div class="visor__pista" id="visorPista" tabindex="0"></div>
+    <div class="visor__pie">
+      <span id="visorTitulo"></span>
+      <span id="visorContador"></span>
+    </div>
+    <button class="visor__flecha visor__flecha--prev" aria-label="Anterior">&#8249;</button>
+    <button class="visor__flecha visor__flecha--next" aria-label="Siguiente">&#8250;</button>
+  </div>
+
+  <script>
+    // ---- Catálogo dinámico ----
+    const BASE = ".";
+    let catalogos = [];
+    let todasFotos = [];
+
+    // Carga catálogo y construye arrays de fotos
+    async function cargar() {
+      try {
+        const res = await fetch(BASE + "/catalogo.json?" + Date.now());
+        catalogos = await res.json();
+      } catch(e) {
+        catalogos = [];
+      }
+      // Todas las fotos de todos los productos (sin duplicar)
+      const fotoSet = new Set();
+      catalogos.forEach(p => {
+        (p.fotos || []).forEach(f => fotoSet.add(f));
+      });
+      todasFotos = [...fotoSet];
+      renderHero();
+      renderBento();
+      renderCatalogo();
+      initVisor();
+      initProceso();
+      initReveal();
+    }
+
+    // Hero slideshow con fade
+    function renderHero() {
+      const cont = document.getElementById("heroSlideshow");
+      if (todasFotos.length === 0) {
+        cont.innerHTML = '<img src="' + BASE + '/img/IMG_2582.jpg" alt="" fetchpriority="high">';
+        return;
+      }
+      // Crear capas de imagen con fade
+      cont.innerHTML = todasFotos.map((f, i) =>
+        '<img class="hero__slide" src="' + BASE + '/img/' + f + '" alt="" style="opacity:' + (i === 0 ? 1 : 0) + '">'
+      ).join("");
+      const slides = cont.querySelectorAll(".hero__slide");
+      let idx = 0;
+      const intervalo = 5000; // cada 5 segundos
+      setInterval(() => {
+        slides[idx].style.opacity = "0";
+        idx = (idx + 1) % slides.length;
+        slides[idx].style.opacity = "1";
+      }, intervalo);
+    }
+
+    // Bento grid dinámico
+    function renderBento() {
+      const grid = document.getElementById("bentoGrid");
+      if (todasFotos.length === 0) {
+        grid.innerHTML = '';
+        return;
+      }
+      // Tomar 5 fotos distintas para la bento
+      const bentoFotos = todasFotos.slice(0, 5);
+      const alts = [
+        "Cuchillo forjado junto a su vaina de cuero",
+        "Cuchillo envainado, en la mano",
+        "Detalle de la hoja y el bolster",
+        "Costura a mano de la vaina de cuero",
+        "Mango de madera visto desde arriba"
+      ];
+      grid.innerHTML = bentoFotos.map((f, i) =>
+        '<figure class="bento__item' + (i === 0 ? ' bento__item--grande' : '') + '" tabindex="0" role="button" aria-label="Ver foto">' +
+        '<img src="' + BASE + '/img/' + f + '" alt="' + (alts[i] || 'Foto del taller') + '" loading="lazy"></figure>'
+      ).join("");
+
+      // Click en bento abre visor con todas las fotos
+      document.querySelectorAll(".bento__item").forEach((fig, i) => {
+        const abrir = () => abrirVisor(todasFotos.map(src => ({src: BASE + "/img/" + src})), i, "Taller");
+        fig.addEventListener("click", abrir);
+        fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
+      });
+    }
+
+    // Catálogo de piezas
+    function renderCatalogo() {
+      const cat = document.getElementById("catalogo");
+      const vacio = document.getElementById("catalogo-vacio");
+      if (catalogos.length === 0) {
+        vacio.hidden = false;
+        cat.innerHTML = "";
+        return;
+      }
+      vacio.hidden = true;
+      cat.innerHTML = catalogos.map(p => {
+        const fotos = (p.fotos || []).map(f => ({src: BASE + "/img/" + f, alt: p.nombre}));
+        return '<article class="pieza">' +
+          '<figure class="pieza__foto" tabindex="0" role="button" aria-label="Ver fotos de ' + p.nombre + '">' +
+          '<img src="' + BASE + '/img/' + (p.foto || p.fotos[0] || '') + '" alt="' + p.nombre + '" loading="lazy"></figure>' +
+          '<div class="pieza__info">' +
+          '<h3 class="pieza__nombre">' + p.nombre + '</h3>' +
+          '<p class="pieza__precio">' + (p.precio || 'A definir') + '</p>' +
+          '<p class="pieza__desc">' +
+            (p.acero ? '<span class="pieza__tag">' + p.acero + '</span>' : '') +
+            (p.mango ? '<span class="pieza__tag">' + p.mango + '</span>' : '') +
+            (p.vaina ? '<span class="pieza__tag">' + p.vaina + '</span>' : '') +
+          '</p>' +
+          '</div></article>';
+      }).join("");
+
+      // Click abre visor con las fotos del producto
+      document.querySelectorAll(".pieza__foto").forEach((fig, i) => {
+        const p = catalogos[i];
+        const fotos = (p.fotos || []).map(f => ({src: BASE + "/img/" + f, alt: p.nombre}));
+        const abrir = () => abrirVisor(fotos, 0, p.nombre);
+        fig.addEventListener("click", abrir);
+        fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
+      });
+    }
+
+    // ---- Visor ----
+    let visorFotos = [];
+    let visorIdx = 0;
+    const visor = document.getElementById("visor");
+    const visorPista = document.getElementById("visorPista");
+    const visorTitulo = document.getElementById("visorTitulo");
+    const visorContador = document.getElementById("visorContador");
+
+    function abrirVisor(fotos, idx, titulo) {
+      visorFotos = fotos;
+      visorIdx = idx;
+      visorTitulo.textContent = titulo;
+      renderVisor();
+      visor.hidden = false;
+      document.body.classList.add("sin-scroll");
+      visorPista.focus();
+    }
+
+    function cerrarVisor() {
+      visor.hidden = true;
+      document.body.classList.remove("sin-scroll");
+    }
+
+    function renderVisor() {
+      visorPista.innerHTML = visorFotos.map(f =>
+        '<figure class="visor__item"><img src="' + f.src + '" alt="' + (f.alt || '') + '"></figure>'
+      ).join("");
+      visorContador.textContent = (visorIdx + 1) + ' / ' + visorFotos.length;
+      visorPista.scrollLeft = visorPista.clientWidth * visorIdx;
+    }
+
+    function indiceVisor() {
+      return Math.round(visorPista.scrollLeft / visorPista.clientWidth);
+    }
+
+    function irVisor(dir) {
+      visorIdx = Math.max(0, Math.min(visorFotos.length - 1, visorIdx + dir));
+      renderVisor();
+    }
+
+    visor.querySelector(".visor__cerrar").addEventListener("click", cerrarVisor);
+    visor.querySelector(".visor__flecha--prev").addEventListener("click", () => irVisor(-1));
+    visor.querySelector(".visor__flecha--next").addEventListener("click", () => irVisor(1));
+    visorPista.addEventListener("click", e => {
+      if (e.target.closest(".visor__item")) {
+        const rect = e.target.getBoundingClientRect();
+        if (e.clientX < rect.left + rect.width / 3) irVisor(-1);
+        else if (e.clientX > rect.left + rect.width * 2 / 3) irVisor(1);
+      }
+    });
+    document.addEventListener("keydown", e => {
+      if (visor.hidden) return;
+      if (e.key === "Escape") cerrarVisor();
+      else if (e.key === "ArrowRight") irVisor(1);
+      else if (e.key === "ArrowLeft") irVisor(-1);
+    });
+    addEventListener("resize", () => { if (!visor.hidden) visorPista.scrollLeft = visorPista.clientWidth * indiceVisor(); });
+
+    // ---- Proceso ----
+    function initProceso() {
+      const pista = document.getElementById("pasos");
+      const pasos = [...pista.children];
+      const puntos = document.getElementById("puntos");
+      pasos.forEach((_, i) => {
+        const b = document.createElement("button");
+        b.type = "button"; b.className = "punto" + (i ? "" : " activo");
+        b.addEventListener("click", () => pasos[i].scrollIntoView({behavior: "smooth", inline: "start", block: "nearest"}));
+        puntos.appendChild(b);
+      });
+      const marcar = () => {
+        const x = pista.scrollLeft + pista.clientWidth * 0.3;
+        let i = pasos.findIndex(p => p.offsetLeft + p.offsetWidth > x); if (i < 0) i = pasos.length - 1;
+        [...puntos.children].forEach((p, j) => p.classList.toggle("activo", j === i));
+      };
+      pista.addEventListener("scroll", marcar, {passive: true});
+      document.querySelectorAll(".flecha").forEach(f => f.addEventListener("click", () => {
+        pista.scrollBy({left: Number(f.dataset.dir) * (pasos[0].offsetWidth + 16), behavior: "smooth"});
+      }));
+    }
+
+    // ---- Reveal al scroll ----
+    function initReveal() {
+      const reducir = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const io = reducir ? null : new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+      }, {threshold: 0.12, rootMargin: "0px 0px -8% 0px"});
+      function observar(el) { if (io) io.observe(el); else el.classList.add("visible"); }
+      document.querySelectorAll(".reveal").forEach(observar);
+    }
+
+    // ---- Nav ----
+    addEventListener("scroll", () => {
+      document.querySelector(".nav").classList.toggle("nav--solida", scrollY > 40);
+    }, {passive: true});
+    document.getElementById("anio").textContent = new Date().getFullYear();
+
+    // Iniciar
+    cargar();
+  </script>
+</body>
+</html>

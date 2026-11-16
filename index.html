@@ -28,7 +28,7 @@
   <main id="inicio">
     <section class="hero">
       <div class="hero__fondo" aria-hidden="true">
-        <div class="hero__slideshow" id="heroSlideshow"></div>
+        <img class="hero__slide" src="img/IMG_2582.jpg" alt="" fetchpriority="high">
       </div>
       <div class="hero__texto">
         <p class="eyebrow reveal">Forjado a mano · Argentina</p>
@@ -138,51 +138,48 @@
       initReveal();
     }
 
-    // Hero slideshow con fade
+    // Hero estático con la primera foto del catálogo
     function renderHero() {
       const cont = document.getElementById("heroSlideshow");
       if (todasFotos.length === 0) {
         cont.innerHTML = '<img src="' + BASE + '/img/IMG_2582.jpg" alt="" fetchpriority="high">';
         return;
       }
-      // Crear capas de imagen con fade
-      cont.innerHTML = todasFotos.map((f, i) =>
-        '<img class="hero__slide" src="' + BASE + '/img/' + f + '" alt="" style="opacity:' + (i === 0 ? 1 : 0) + '">'
-      ).join("");
-      const slides = cont.querySelectorAll(".hero__slide");
-      let idx = 0;
-      const intervalo = 5000; // cada 5 segundos
-      setInterval(() => {
-        slides[idx].style.opacity = "0";
-        idx = (idx + 1) % slides.length;
-        slides[idx].style.opacity = "1";
-      }, intervalo);
+      // Usar la primera foto del primer producto
+      const heroFoto = todasFotos[0];
+      cont.innerHTML = '<img class="hero__slide" src="' + BASE + '/img/' + heroFoto + '" alt="" fetchpriority="high">';
     }
 
-    // Bento grid dinámico
+    // Bento grid con las fotos del primer producto
     function renderBento() {
       const grid = document.getElementById("bentoGrid");
-      if (todasFotos.length === 0) {
+      if (catalogos.length === 0) {
         grid.innerHTML = '';
         return;
       }
-      // Tomar 5 fotos distintas para la bento
-      const bentoFotos = todasFotos.slice(0, 5);
+      // Usar las fotos del primer producto
+      const primerProd = catalogos[0];
+      const bentoFotos = (primerProd.fotos || []).slice(0, 5);
+      if (bentoFotos.length === 0) {
+        grid.innerHTML = '';
+        return;
+      }
       const alts = [
-        "Cuchillo forjado junto a su vaina de cuero",
-        "Cuchillo envainado, en la mano",
-        "Detalle de la hoja y el bolster",
-        "Costura a mano de la vaina de cuero",
-        "Mango de madera visto desde arriba"
+        primerProd.nombre,
+        primerProd.nombre,
+        primerProd.nombre,
+        primerProd.nombre,
+        primerProd.nombre
       ];
       grid.innerHTML = bentoFotos.map((f, i) =>
         '<figure class="bento__item' + (i === 0 ? ' bento__item--grande' : '') + '" tabindex="0" role="button" aria-label="Ver foto">' +
         '<img src="' + BASE + '/img/' + f + '" alt="' + (alts[i] || 'Foto del taller') + '" loading="lazy"></figure>'
       ).join("");
 
-      // Click en bento abre visor con todas las fotos
+      // Click en bento abre visor con las fotos del producto
       document.querySelectorAll(".bento__item").forEach((fig, i) => {
-        const abrir = () => abrirVisor(todasFotos.map(src => ({src: BASE + "/img/" + src})), i, "Taller");
+        const fotos = (primerProd.fotos || []).map(f => ({src: BASE + "/img/" + f, alt: primerProd.nombre}));
+        const abrir = () => abrirVisor(fotos, i, primerProd.nombre);
         fig.addEventListener("click", abrir);
         fig.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); abrir(); } });
       });
